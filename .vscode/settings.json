@@ -1,8 +1,4 @@
 {
-    "C_Cpp.default.cppStandard": "c++23",
-    "C_Cpp.default.compileCommands": [
-        "compile_commands.json"
-    ],
     "files.associations": {
         "ostream": "cpp",
         "any": "cpp",

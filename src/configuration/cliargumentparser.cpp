@@ -19,7 +19,7 @@ namespace
     }
 }
 
-auto CLIArgumentParser::parse(int argc, char **argv) -> std::expected<CLIArguments, int>
+auto CLIArgumentParser::parse(int argc, char **argv) -> std::expected<CLIArguments, std::string>
 {
     CLI::App app{"Fast Fourier Visualizer"};
 
@@ -28,19 +28,18 @@ auto CLIArgumentParser::parse(int argc, char **argv) -> std::expected<CLIArgumen
 
     try
     {
-        (app).parse(argc, argv);
+        app.parse(argc, argv);
     }
     catch (const CLI::ParseError &e)
     {
-        return std::unexpected((app).exit(e));
+        return std::unexpected(std::format("err code: {}", app.exit(e)));
     }
 
     auto optInputType = parseInputType(input);
 
     if (!optInputType)
     {
-        std::cerr << "Failed to parse input. Available values: demo, stdin.\n";
-        return std::unexpected(1);
+        return std::unexpected("Failed to parse input. Available values: demo, stdin.\n");
     }
     return CLIArguments{.m_inputType = optInputType.value()};
 }

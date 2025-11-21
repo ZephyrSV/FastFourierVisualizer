@@ -65,7 +65,8 @@ FetchContent_MakeAvailable(cli11)
 # Add the CPP files
 set(SOURCES src/main.cpp)
 add_subdirectory(src/configuration)
-
+add_subdirectory(src/datamodel)
+add_subdirectory(src/signalcapturer)
 
 # ---- Executable ----
 add_executable(fastfouriervis ${SOURCES})

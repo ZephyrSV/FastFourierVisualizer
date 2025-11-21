@@ -12,15 +12,7 @@ namespace ffv
     {
     public:
         static auto create(std::vector<SignalAmplitude> amplitudes,
-                           std::vector<TimePoint> timepoints) -> std::expected<SignalCapture, std::string>
-        {
-            if (amplitudes.size() != timepoints.size())
-                return std::unexpected(
-                    std::format("Cannot create a SignalCapture with amplitudes and timepoints vectors of different lengths (amplitudes: {}, timepoints: {})",
-                                amplitudes.size(), timepoints.size()));
-
-            return SignalCapture(std::move(amplitudes), std::move(timepoints));
-        }
+                           std::vector<TimePoint> timepoints) -> std::expected<SignalCapture, std::string>;
 
         auto getAmplitudes() const noexcept -> const std::vector<SignalAmplitude> &
         {
@@ -34,10 +26,7 @@ namespace ffv
 
     private:
         explicit SignalCapture(std::vector<SignalAmplitude> amplitudes,
-                               std::vector<TimePoint> timepoints)
-            : m_amplitudes{std::move(amplitudes)}, m_timepoints{std::move(timepoints)}
-        {
-        }
+                               std::vector<TimePoint> timepoints);
         std::vector<SignalAmplitude> m_amplitudes;
         std::vector<TimePoint> m_timepoints;
     };
