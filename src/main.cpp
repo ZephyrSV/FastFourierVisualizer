@@ -1,12 +1,13 @@
-#include <matplot/matplot.h>
 #include <vector>
 #include <ranges>
 #include <expected>
+#include <iostream>
 
 #include "datamodel/signalcapture.h"
 #include "configuration/cliargumentparser.h"
 #include "signalcapturer/isignalcapturer.h"
 #include "signalcapturer/signalcapturerfactory.h"
+#include "graphvisualizer/graphvisualizer.h"
 
 int main(int argc, char **argv)
 {
@@ -25,14 +26,11 @@ int main(int argc, char **argv)
                                                                                            { return asDouble(e); }) |
                                                                      std::ranges::to<std::vector<double>>();
 
-                                   matplot::scatter(signalCapture.getAmplitudes() | asDoubles, signalCapture.getTimePoints() | asDoubles);
-                                   matplot::title("Example 2D Points");
-                                   matplot::xlabel("x");
-                                   matplot::ylabel("y");
-                                   matplot::grid(true);
-                                   matplot::axis(matplot::equal);
-                                   matplot::show(); // Opens a window with the plot
-                               });
+                                   auto graphVisualizer = GraphVisualizer{};
+                                   graphVisualizer.setXYdata(signalCapture.getTimePoints() | asDoubles, signalCapture.getAmplitudes() | asDoubles);
+                                   graphVisualizer.setXAxisLabel("Time (s)");
+                                   graphVisualizer.setYAxisLabel("Amplitude");
+                                   graphVisualizer.show(); });
 
     if (!expSignalCapture.has_value())
     {
