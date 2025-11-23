@@ -2,32 +2,30 @@
 
 #include <vector>
 #include <expected>
-
-#include "signalamplitude.h"
-#include "timepoint.h"
+#include <chrono>
 
 namespace ffv
 {
     class SignalCapture final
     {
     public:
-        static auto create(std::vector<SignalAmplitude> amplitudes,
-                           std::vector<TimePoint> timepoints) -> std::expected<SignalCapture, std::string>;
+        static auto create(std::vector<double> amplitudes,
+                           std::chrono::duration<double> samplePeriod) -> std::expected<SignalCapture, std::string>;
 
-        auto getAmplitudes() const noexcept -> const std::vector<SignalAmplitude> &
+        auto getAmplitudes() const noexcept -> const std::vector<double> &
         {
             return m_amplitudes;
         }
 
-        auto getTimePoints() const noexcept -> const std::vector<TimePoint> &
+        auto getSamplePeriod() const -> std::chrono::duration<double>
         {
-            return m_timepoints;
+            return m_samplePeriod;
         }
 
     private:
-        explicit SignalCapture(std::vector<SignalAmplitude> amplitudes,
-                               std::vector<TimePoint> timepoints);
-        std::vector<SignalAmplitude> m_amplitudes;
-        std::vector<TimePoint> m_timepoints;
+        explicit SignalCapture(std::vector<double> amplitudes,
+                               std::chrono::duration<double> samplePeriod);
+        std::vector<double> m_amplitudes;
+        std::chrono::duration<double> m_samplePeriod;
     };
 }

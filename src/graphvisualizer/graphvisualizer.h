@@ -22,7 +22,7 @@ namespace ffv
         explicit GraphVisualizer() noexcept;
         ~GraphVisualizer() noexcept;
 
-        auto setXYdata(std::vector<double> xData, std::vector<double> yData) -> void;
+        auto plot(std::vector<double> xData, std::vector<double> yData) -> void;
         auto setXAxisLabel(std::string xAxisLabel) -> void;
         auto setYAxisLabel(std::string yAxisLabel) -> void;
         auto show() const -> void;

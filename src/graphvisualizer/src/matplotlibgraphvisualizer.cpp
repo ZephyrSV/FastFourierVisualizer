@@ -4,7 +4,7 @@
 
 using namespace ffv;
 
-auto MatPlotLibGraphVisualizer::setXYdata(std::vector<double> xData, std::vector<double> yData) -> void
+auto MatPlotLibGraphVisualizer::plot(std::vector<double> xData, std::vector<double> yData) -> void
 {
     m_xData = std::move(xData);
     m_yData = std::move(yData);

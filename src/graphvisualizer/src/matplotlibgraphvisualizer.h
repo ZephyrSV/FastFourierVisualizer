@@ -9,7 +9,7 @@ namespace ffv
     public:
         explicit MatPlotLibGraphVisualizer() noexcept = default;
 
-        auto setXYdata(std::vector<double> xData, std::vector<double> yData) -> void final;
+        auto plot(std::vector<double> xData, std::vector<double> yData) -> void final;
         auto setXAxisLabel(std::string xAxisLabel) -> void final;
         auto setYAxisLabel(std::string yAxisLabel) -> void final;
         auto show() const -> void final;

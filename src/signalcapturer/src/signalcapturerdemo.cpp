@@ -5,39 +5,39 @@
 #include <ranges>
 #include <algorithm>
 #include <cmath>
+#include <numbers>
 
 using namespace ffv;
 
 namespace
 {
     constexpr auto DEMO_SIGNAL_LENGTH = 1000;
-    constexpr auto DEMO_SIGNAL_TIME_INCREMENTS = 0.02;
+    constexpr auto DEMO_SIGNAL_SAMPLE_PERIOD = 0.02;
 
     consteval auto makeTimePoints()
     {
         auto timepoints = std::array<double, DEMO_SIGNAL_LENGTH>{};
         std::ranges::generate(timepoints, [d = 0.0] mutable noexcept -> double
-                              {d+=DEMO_SIGNAL_TIME_INCREMENTS; return d; });
+                              {d+=DEMO_SIGNAL_SAMPLE_PERIOD; return d; });
         return timepoints;
     }
 
-    consteval auto make3SinSignalAmplitudes(const std::array<double, DEMO_SIGNAL_LENGTH> &timepoints)
+    constexpr auto sinWave = [](double freq, double t) -> double
     {
-        return timepoints | std::views::transform([](double t) -> double
-                                                  { return 3.0 * std::sin(1.0 * t) + 1.0 * std::sin(3.0 * t) + 0.5 * std::sin(5.0 * t); });
-    }
+        return std::sin(std::numbers::pi * 2.0 * freq * t);
+    };
 
-    constexpr auto toSignalAmplitude = std::views::transform([](double v) noexcept
-                                                             { return SignalAmplitude{v}; });
-    constexpr auto toTimePoint = std::views::transform([](double v) noexcept
-                                                       { return TimePoint{v}; });
+    consteval auto make3SinWave()
+    {
+        return makeTimePoints() | std::views::transform([](double t) -> double
+                                                        { return 1.0 * sinWave(1, t) + 1.0 * sinWave(3.0, t) + 1.0 * sinWave(5.0, t); });
+    }
 }
 
 auto SignalCapturerDemo::createCapture() -> std::expected<SignalCapture, std::string>
 {
-    static constexpr auto timepoints = makeTimePoints();
-    static constexpr auto ampl = make3SinSignalAmplitudes(timepoints);
+    static constexpr auto amplitudes = make3SinWave();
 
-    return SignalCapture::create({std::from_range, ampl | toSignalAmplitude},
-                                 {std::from_range, timepoints | toTimePoint});
+    return SignalCapture::create({std::from_range, amplitudes},
+                                 std::chrono::duration<double>{DEMO_SIGNAL_SAMPLE_PERIOD});
 }

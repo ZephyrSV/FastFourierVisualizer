@@ -15,17 +15,18 @@ namespace ffv
     private:
         auto createCapture() -> std::expected<SignalCapture, std::string> final
         {
-            auto amplitudes = std::vector<SignalAmplitude>{};
-            auto timepoints = std::vector<TimePoint>{};
+            double samplePeriod;
+            if (!(std::cin >> samplePeriod))
+                return std::unexpected("No signal was provided through stdin. You must first send the sampling period then the samples.");
 
-            double amplitude, timepoint;
-            while (std::cin >> amplitude >> timepoint)
+            auto amplitudes = std::vector<double>{};
+            double amplitude;
+            while (std::cin >> amplitude)
             {
                 amplitudes.emplace_back(amplitude);
-                timepoints.emplace_back(timepoint);
             }
 
-            return SignalCapture::create(std::move(amplitudes), std::move(timepoints));
+            return SignalCapture::create(std::move(amplitudes), std::chrono::duration<double>{samplePeriod});
         }
     };
 }

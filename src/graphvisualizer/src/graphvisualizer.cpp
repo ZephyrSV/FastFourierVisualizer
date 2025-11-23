@@ -10,9 +10,9 @@ GraphVisualizer::GraphVisualizer() noexcept
 
 GraphVisualizer::~GraphVisualizer() noexcept = default;
 
-auto GraphVisualizer::setXYdata(std::vector<double> xData, std::vector<double> yData) -> void
+auto GraphVisualizer::plot(std::vector<double> xData, std::vector<double> yData) -> void
 {
-    m_pimpl->setXYdata(std::move(xData), std::move(yData));
+    m_pimpl->plot(std::move(xData), std::move(yData));
 }
 
 auto GraphVisualizer::setXAxisLabel(std::string xAxisLabel) -> void

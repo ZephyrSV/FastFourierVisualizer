@@ -10,7 +10,7 @@ namespace ffv
     public:
         virtual ~IGraphVisualizerImpl() = default;
 
-        virtual auto setXYdata(std::vector<double> xData, std::vector<double> yData) -> void = 0;
+        virtual auto plot(std::vector<double> xData, std::vector<double> yData) -> void = 0;
         virtual auto setXAxisLabel(std::string xAxisLabel) -> void = 0;
         virtual auto setYAxisLabel(std::string yAxisLabel) -> void = 0;
         virtual auto show() const -> void = 0;

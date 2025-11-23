@@ -8,34 +8,36 @@
 #include "signalcapturer/isignalcapturer.h"
 #include "signalcapturer/signalcapturerfactory.h"
 #include "graphvisualizer/graphvisualizer.h"
+#include "graphvisualizer/setupvisualizer.h"
+#include "fouriertransform/discretefouriertransform.h"
 
 int main(int argc, char **argv)
 {
     using namespace ffv;
 
-    auto expCLIArgs = CLIArgumentParser{}.parse(argc, argv);
+    auto graphVisualizer = GraphVisualizer{};
 
-    auto expSignalCapture = expCLIArgs.transform([](const CLIArguments &cliArgs)
-                                                 { return SignalCapturerFactory{}.create(cliArgs.m_inputType); })
-                                .and_then([](std::unique_ptr<ISignalCapturer> signalCapturer)
-                                          { return signalCapturer->createCapture(); });
+    auto exp = CLIArgumentParser{}
+                   .parse(argc, argv)
+                   .transform([](const CLIArguments &cliArgs)
+                              { return SignalCapturerFactory{}.create(cliArgs.m_inputType); })
+                   .and_then([](std::unique_ptr<ISignalCapturer> signalCapturer)
+                             { return signalCapturer->createCapture(); })
 
-    expSignalCapture.transform([](SignalCapture signalCapture)
-                               {
-                                   constexpr static auto asDoubles = std::views::transform([](const auto &e)
-                                                                                           { return asDouble(e); }) |
-                                                                     std::ranges::to<std::vector<double>>();
+                   .transform([&graphVisualizer](SignalCapture signalCapture)
+                              { 
+                                setUpVisualizer(graphVisualizer, signalCapture); 
+                                graphVisualizer.show();
+                                return signalCapture; })
+                   .transform([&graphVisualizer](SignalCapture signalCapture)
+                              {
+                                setUpVisualizer(graphVisualizer, dft(signalCapture)); 
+                                graphVisualizer.show(); });
 
-                                   auto graphVisualizer = GraphVisualizer{};
-                                   graphVisualizer.setXYdata(signalCapture.getTimePoints() | asDoubles, signalCapture.getAmplitudes() | asDoubles);
-                                   graphVisualizer.setXAxisLabel("Time (s)");
-                                   graphVisualizer.setYAxisLabel("Amplitude");
-                                   graphVisualizer.show(); });
-
-    if (!expSignalCapture.has_value())
+    if (!exp.has_value())
     {
         std::cerr << "An error has occurred.\n"
-                  << expSignalCapture.error();
+                  << exp.error();
         return -1;
     }
 
