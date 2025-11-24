@@ -5,7 +5,7 @@
 Most of my code ends up in private repositories, so I want to show that I can deliver a mini-project from start to finish.  
 This is becoming relevant during my 2025 job search.
 
-I have designed this project to showcase dependency management and my standard library management.
+I have designed this project to showcase how I handle dependencies, that I can adapt myself to multiple styles/paradygms of coding and that I have an extensive knowledge of the STL.
 
 ## How to build
 
