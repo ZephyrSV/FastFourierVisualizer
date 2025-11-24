@@ -10,6 +10,8 @@ namespace ffv
 
 namespace ffv
 {
+    /*! A Signal Capturer creates SignalCaptures, which can then be analyzed/processed
+     */
     class ISignalCapturer
     {
     public:

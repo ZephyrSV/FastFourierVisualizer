@@ -1,7 +1,7 @@
-#include "fastfouriertransform.h"
+#include "../fastfouriertransform.h"
 
-#include "../datamodel/signalcapture.h"
-#include "../datamodel/signalfouriertransform.h"
+#include "../../datamodel/signalcapture.h"
+#include "../../datamodel/signalfouriertransform.h"
 
 #include <complex>
 #include <ranges>
@@ -56,11 +56,9 @@ namespace ffv
 
         FASTFOURIERIMPL::fft(valarray);
 
-        auto resultAbs = std::move(valarray) | std::views::transform([](complex d)
-                                                                     { return std::abs(d); }) |
-                         std::ranges::to<std::vector<double>>();
-
-        return SignalFourierTransform{resultAbs, 1.0 / signalCapture.getSamplePeriod().count()};
+        return SignalFourierTransform{{std::from_range, valarray | std::views::transform([](complex d)
+                                                                                         { return std::abs(d); })},
+                                      1.0 / signalCapture.getSamplePeriod().count()};
     }
 
 }

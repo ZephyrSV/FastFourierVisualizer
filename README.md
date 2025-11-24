@@ -1,6 +1,11 @@
 # Fast Fourier Visualizer
 
-I made this project to show my technical C++ level, to help me during my 2025 job search. 
+## What am I trying to achieve here?
+
+Most of my code ends up in private repositories, so I want to show that I can deliver a mini-project from start to finish.  
+This is becoming relevant during my 2025 job search.
+
+I have designed this project to showcase dependency management and my standard library management.
 
 ## How to build
 

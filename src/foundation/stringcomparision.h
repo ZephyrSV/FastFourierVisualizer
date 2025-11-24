@@ -5,6 +5,8 @@
 
 namespace ffv
 {
+    /*! compares two strings in a case-insensitive way.
+     */
     auto caseInsensitiveEquals(std::string_view lhs, std::string_view rhs) -> bool
     {
         static constexpr auto toLower = [](char a)

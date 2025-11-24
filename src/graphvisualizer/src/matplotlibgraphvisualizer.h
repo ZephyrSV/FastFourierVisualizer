@@ -4,6 +4,8 @@
 
 namespace ffv
 {
+    /*! Acts as an GOF "Adapter" to the Matplotlib library
+     */
     class MatPlotLibGraphVisualizer final : public IGraphVisualizerImpl
     {
     public:

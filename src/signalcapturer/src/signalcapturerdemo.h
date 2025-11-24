@@ -4,6 +4,9 @@
 
 namespace ffv
 {
+    /*!
+    Creates a predefined pattern and produces a SignalCapture
+    */
     class SignalCapturerDemo final : public ISignalCapturer
     {
     public:

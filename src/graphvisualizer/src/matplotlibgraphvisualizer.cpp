@@ -26,6 +26,6 @@ auto MatPlotLibGraphVisualizer::show() const -> void
     matplot::xlabel(m_xAxisLabel);
     matplot::ylabel(m_yAxisLabel);
     matplot::grid(true);
-    // matplot::axis(matplot::equal);
+
     matplot::show(); // Opens a window with the plot
 }

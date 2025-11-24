@@ -11,6 +11,8 @@ namespace ffv
 
 namespace ffv
 {
+    /*! Creates a ISignalCapturer, capable of creating a Signal.
+     */
     class SignalCapturerFactory
     {
     public:

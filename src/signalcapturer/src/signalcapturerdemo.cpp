@@ -22,7 +22,7 @@ namespace
         return timepoints;
     }
 
-    constexpr auto sinWave = [](double freq, double t) -> double
+    constexpr auto sinWave(double freq, double t) -> double
     {
         return std::sin(std::numbers::pi * 2.0 * freq * t);
     };

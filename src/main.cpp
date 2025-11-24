@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "datamodel/signalcapture.h"
+#include "datamodel/signalfouriertransform.h"
 #include "configuration/cliargumentparser.h"
 #include "signalcapturer/isignalcapturer.h"
 #include "signalcapturer/signalcapturerfactory.h"

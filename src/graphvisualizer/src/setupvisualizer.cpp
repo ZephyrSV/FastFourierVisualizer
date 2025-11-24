@@ -42,7 +42,7 @@ namespace ffv
         auto normalize = [N](double d)
         { return d / static_cast<double>(N / 2); };
 
-        graphVisualizer.plot(makeFrequencyBins(N, fs), toVisualize.getDftBins() | std::views::transform(normalize) | std::ranges::to<std::vector<double>>());
+        graphVisualizer.plot(makeFrequencyBins(N, fs), {std::from_range, toVisualize.getDftBins() | std::views::transform(normalize)});
         graphVisualizer.setXAxisLabel("frequency (Hz)");
         graphVisualizer.setYAxisLabel("Amplitude");
     }

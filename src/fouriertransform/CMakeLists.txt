@@ -1,5 +1,3 @@
-list(APPEND SOURCES
-    src/fouriertransform/fastfouriertransform.cpp
-)
+add_subdirectory(src)
 
 set(SOURCES "${SOURCES}" PARENT_SCOPE)

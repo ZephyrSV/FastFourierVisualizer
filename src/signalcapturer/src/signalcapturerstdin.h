@@ -7,6 +7,9 @@
 
 namespace ffv
 {
+    /*!
+    Creates a signal by reading stdin
+    */
     class SignalCapturerStdin final : public ISignalCapturer
     {
     public:
