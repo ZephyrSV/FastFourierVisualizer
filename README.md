@@ -50,6 +50,10 @@ Once computed it is shown to the user
 
 ![FFT](assets/demoFFT.svg)
 
+## To be added
+
+- Fuzz Testing
+
 ## Contributors 
 
 Just me and the occasional question to chatgpt/google.
