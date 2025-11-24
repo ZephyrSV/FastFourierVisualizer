@@ -14,12 +14,49 @@ Currently this repo has been proven to work with:
 1. Install the required programs (you also need c++23 compiler)
 1. Open `src/main.cpp` and hit <kbd>F7</kbd>
 
-## How to contribute
+## Example of the program running
 
-You don't 😉.
+running the program with 
+
+```
+build/fastfouriervis --input demo
+```
+
+Will generate a signal and a visualization will be shown on screen
+
+![Signal](assets/demoSignal.svg)
+
+The demo signal is defined by the following formula
+
+```
+τ = 2*pi
+f(t) = sin(τ * t) + sin(3 * τ * t) + sinWave(5 * τ * t);
+```
+
+Hitting <kbd>Enter</kbd> in the command line starts the computation of the DFT using its definition (see https://en.wikipedia.org/wiki/Discrete_Fourier_transform)
+
+Once computed it is shown to the user
+
+![DFT](assets/demoDFT.svg)
+
+Then, hitting <kbd>Enter</kbd> again starts the computation of the DFT using the FFT method
+
+Once computed it is shown to the user
+
+![FFT](assets/demoFFT.svg)
 
 ## Contributors 
 
 Just me and the occasional question to chatgpt/google.
 
 (No AI was used from within the repo and all code was hand written)
+
+# Known Problems and Issues
+
+There seems to be a bug with the plot lib library I am using and it seem to flood the console.
+
+Here's a work-around
+```
+build/fastfouriervis --input demo 2> /dev/null 
+```
+

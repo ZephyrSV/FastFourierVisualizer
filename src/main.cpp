@@ -32,7 +32,7 @@ int main(int argc, char **argv)
                                 // 2. Show the DFT computed using the O(n2) method
                                 setUpVisualizer(graphVisualizer, dft(signalCapture)); 
                                 graphVisualizer.show(); 
-                                // 3. Show the DFT computed using the DFT (work in progress - seems like most people get it wrong)
+                                // 3. Show the DFT computed using the FFT O(n*log n) method
                                 setUpVisualizer(graphVisualizer, fft(signalCapture)); 
                                 graphVisualizer.show(); });
 
