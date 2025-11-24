@@ -11,10 +11,8 @@ Currently this repo has been proven to work with:
 
 1. Open the repository with VS Code.
 1. Install the recommended extensions (open the extensions menu and look for `@recommended`).
-1. Install the required programs ()
+1. Install the required programs (you also need c++23 compiler)
 1. Open `src/main.cpp` and hit <kbd>F7</kbd>
-
-
 
 ## How to contribute
 

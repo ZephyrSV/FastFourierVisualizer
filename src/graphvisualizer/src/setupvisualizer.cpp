@@ -27,18 +27,22 @@ namespace ffv
 
     void setUpVisualizer(GraphVisualizer &graphVisualizer, const SignalFourierTransform &toVisualize)
     {
-        constexpr auto makeFrequencyBins = [](const SignalFourierTransform &signalft)
+        auto N = toVisualize.getDftBins().size();
+        auto fs = toVisualize.getSampleRate();
+
+        constexpr auto makeFrequencyBins = [](size_t N, double fs)
         {
-            auto N = signalft.getDftBins().size();
-            auto fs = signalft.getSampleRate();
             auto frequencies = std::vector<double>(N / 2);
             std::ranges::generate(frequencies, [&, d = 0.0] mutable noexcept -> double
-                                  {d+=static_cast<double>(fs)/static_cast<double>(N); 
+                                  {d+=fs/static_cast<double>(N); 
                                     return d; });
             return frequencies;
         };
 
-        graphVisualizer.plot(makeFrequencyBins(toVisualize), toVisualize.getDftBins());
+        auto normalize = [N](double d)
+        { return d / static_cast<double>(N / 2); };
+
+        graphVisualizer.plot(makeFrequencyBins(N, fs), toVisualize.getDftBins() | std::views::transform(normalize) | std::ranges::to<std::vector<double>>());
         graphVisualizer.setXAxisLabel("frequency (Hz)");
         graphVisualizer.setYAxisLabel("Amplitude");
     }

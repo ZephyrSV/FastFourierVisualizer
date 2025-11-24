@@ -68,6 +68,7 @@ add_subdirectory(src/configuration)
 add_subdirectory(src/datamodel)
 add_subdirectory(src/signalcapturer)
 add_subdirectory(src/graphvisualizer)
+add_subdirectory(src/fouriertransform)
 
 # ---- Executable ----
 add_executable(fastfouriervis ${SOURCES})
