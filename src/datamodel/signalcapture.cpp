@@ -1,4 +1,4 @@
-#include "signalcapture.h"
+#include "datamodel/signalcapture.h"
 
 using namespace ffv;
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../configuration/cliarguments.h"
+#include "configuration/cliarguments.h"
 
 #include <memory>
 

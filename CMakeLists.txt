@@ -64,6 +64,7 @@ FetchContent_MakeAvailable(cli11)
 
 # Add the CPP files
 set(SOURCES src/main.cpp)
+set(TESTSOURCES src/test.cpp)
 add_subdirectory(src/configuration)
 add_subdirectory(src/datamodel)
 add_subdirectory(src/signalcapturer)
@@ -72,8 +73,35 @@ add_subdirectory(src/fouriertransform)
 
 # ---- Executable ----
 add_executable(fastfouriervis ${SOURCES})
+
+# Set the include cwd
+target_include_directories(fastfouriervis
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/src
+)
+
 # Apply warnings
 enable_all_warnings(fastfouriervis)
 
 target_link_libraries(fastfouriervis PRIVATE matplot)
 target_link_libraries(fastfouriervis PRIVATE CLI11::CLI11)
+
+# Enable CTest
+enable_testing()
+
+# TESTING
+FetchContent_Declare(
+  Catch2
+  GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+  GIT_TAG        v3.8.1 # or a later release
+)
+
+FetchContent_MakeAvailable(Catch2)
+list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/extras)
+include(Catch)
+add_executable(tests ${TESTSOURCES})
+
+target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
+
+# Register the test with CTest
+catch_discover_tests(tests)

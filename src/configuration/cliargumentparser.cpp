@@ -1,9 +1,9 @@
-#include "cliargumentparser.h"
+#include "configuration/cliargumentparser.h"
 
 #include <CLI/CLI.hpp>
 #include <string_view>
 
-#include "../foundation/stringcomparision.h"
+#include "foundation/stringcomparision.h"
 
 using namespace ffv;
 

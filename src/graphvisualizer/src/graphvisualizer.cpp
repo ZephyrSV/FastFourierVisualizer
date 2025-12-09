@@ -1,5 +1,5 @@
-#include "../graphvisualizer.h"
-#include "matplotlibgraphvisualizer.h"
+#include "graphvisualizer/graphvisualizer.h"
+#include "graphvisualizer/src/matplotlibgraphvisualizer.h"
 
 using namespace ffv;
 

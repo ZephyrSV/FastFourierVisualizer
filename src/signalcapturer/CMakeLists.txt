@@ -1,3 +1,4 @@
 add_subdirectory(src)
 
 set(SOURCES "${SOURCES}" PARENT_SCOPE)
+set(TESTSOURCES "${TESTSOURCES}" PARENT_SCOPE)

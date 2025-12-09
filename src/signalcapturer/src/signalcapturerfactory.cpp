@@ -1,7 +1,7 @@
-#include "../signalcapturerfactory.h"
+#include "signalcapturer/signalcapturerfactory.h"
 
-#include "signalcapturerdemo.h"
-#include "signalcapturerstdin.h"
+#include "signalcapturer/src/signalcapturerdemo.h"
+#include "signalcapturer/src/signalcapturerstdin.h"
 
 using namespace ffv;
 

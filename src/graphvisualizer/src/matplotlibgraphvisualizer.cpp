@@ -1,4 +1,4 @@
-#include "matplotlibgraphvisualizer.h"
+#include "graphvisualizer/src/matplotlibgraphvisualizer.h"
 
 #include <matplot/matplot.h>
 

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../isignalcapturer.h"
-#include "../../datamodel/signalcapture.h"
+#include "signalcapturer/isignalcapturer.h"
+#include "datamodel/signalcapture.h"
 
 #include <iostream>
 

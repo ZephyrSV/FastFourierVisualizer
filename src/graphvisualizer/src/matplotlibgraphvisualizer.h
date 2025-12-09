@@ -1,6 +1,6 @@
 #pragma once
 
-#include "igraphvisualizerimpl.h"
+#include "graphvisualizer/src/igraphvisualizerimpl.h"
 
 namespace ffv
 {

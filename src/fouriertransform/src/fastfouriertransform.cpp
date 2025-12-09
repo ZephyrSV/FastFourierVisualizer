@@ -1,7 +1,7 @@
-#include "../fastfouriertransform.h"
+#include "fouriertransform/fastfouriertransform.h"
 
-#include "../../datamodel/signalcapture.h"
-#include "../../datamodel/signalfouriertransform.h"
+#include "datamodel/signalcapture.h"
+#include "datamodel/signalfouriertransform.h"
 
 #include <complex>
 #include <ranges>

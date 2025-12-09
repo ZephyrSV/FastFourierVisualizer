@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../isignalcapturer.h"
+#include "signalcapturer/isignalcapturer.h"
 
 namespace ffv
 {

@@ -1,6 +1,6 @@
-#include "signalcapturerdemo.h"
+#include "signalcapturer/src/signalcapturerdemo.h"
 
-#include "../../datamodel/signalcapture.h"
+#include "datamodel/signalcapture.h"
 
 #include <ranges>
 #include <algorithm>
